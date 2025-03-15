@@ -40,3 +40,8 @@ a {
     color-scheme: dark;
   }
 }
+
+.test {
+  background-color: black;
+  color: white;
+}
