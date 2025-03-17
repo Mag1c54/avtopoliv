@@ -6,9 +6,22 @@ const HeroContent = () => {
        <HeroVideo>
 
         <div className={styles.heroContent}>
-            <h1>Welcome to our website</h1>
+        <div className={styles.heroContentText}>
+    <h3> Системы автоматического полива</h3>
+    <p>Проектируем и устанавливаем под ключ системы автополива и ландшафтное освещение. Предлагаем широкий выбор профессионального оборудования Hunter для частных домовладельцев, специализированных агентств и ландшафтных дизайнеров.</p>
+    </div>
+        <div className={styles.heroContentContainer}>
+            <a className={styles.heroContentContainerItem}>
+                {/* todo: add link  and styles*/}
+            </a>
+            <a className={styles.heroContentContainerItem}>
+                {/* todo: add link  and styles*/}
+            </a>
+            
+
         </div>
 
+       </div>
        </HeroVideo>
 
     
