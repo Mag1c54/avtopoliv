@@ -20,7 +20,6 @@ const HeroContent = () => {
             
 
         </div>
-
        </div>
        </HeroVideo>
 
