@@ -1,10 +1,13 @@
-import Header from "./(components)/header/page";
+import ContactForm from "../components/contactForm/contactForm";
+
 
 export default function Home() {
   return (
     <div>
-      
-      <h1>Hello World</h1>
+     
+     
+      <ContactForm />
+   
     </div>
   );
 }
