@@ -10,7 +10,11 @@ const express = require('express');
 const app = express();
 const port = 3001;
 
-app.get('/', (req, res) => {
+app.get('/api/contact', (req, res) => {
+  res.send('Hello World');
+});
+app.post('/api/contact', (req, res) => {
+  console.log(req.body);
   res.send('Hello World');
 });
 

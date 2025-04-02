@@ -1,13 +1,15 @@
-import ContactForm from "../components/contactForm/contactForm";
+import Footer from "@/components/footer/page";
+import Header from "@/components/header/page";
+import HeroContent from "@/components/heroContent/page";
 
 
 export default function Home() {
   return (
     <div>
      
-     
-      <ContactForm />
-   
+     <Header />
+     <HeroContent />
+     <Footer />
     </div>
   );
 }
