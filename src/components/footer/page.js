@@ -1,16 +1,37 @@
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 import styles from "./footer-style.module.css";
+import AutoPolivLogo from "../logo";
+
 
 
 const Footer = () => {
-    return ( 
-        <footer>
-            <div className={styles.footer}>
-                <div className={styles.footerContent}>
-                    <h4>Контакты</h4>
-                </div>
-            </div>
-        </footer>
-    );
-}
- 
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        {/* Логотип */}
+        <div className={styles.logo}>
+        <AutoPolivLogo />
+        </div>
+
+        {/* Соцсети */}
+        <div className={styles.social}>
+          <Link href="https://t.me/your-channel">
+            <Image src="/tg-icon.svg" alt="Telegram" width={40} height={40} />
+          </Link>
+          <Link href="https://vk.com/your-page">
+            <Image src="/whatsapp-icon.svg" alt="Whatsapp" width={40} height={40} />
+          </Link>
+        </div>
+
+        {/* Копирайт */}
+        <div className={styles.copyright}>
+          © 1999-2025 Автополив РФ
+        </div>
+      </div>
+    </footer>
+  );
+};
+
 export default Footer;
