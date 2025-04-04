@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./header-style.module.css";
 import AutoPolivLogo from "../logo";
-import DropDownMenu from "./dropdown";
+import DropDownMenu from "./dropdown/dropdown";
 
 
 const Header = () => {
@@ -27,6 +27,7 @@ const Header = () => {
           <Link href="#">Новости</Link>
           <Link href="#">Услуги</Link>
           <Link href="#">Работы</Link>
+          <Link href="#">Контакты</Link>
         
           <DropDownMenu title="Каталог ▾" links={catalogLinks} />
 

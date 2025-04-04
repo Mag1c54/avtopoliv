@@ -1,7 +1,8 @@
-import Footer from "@/components/footer/page";
-import Header from "@/components/header/page";
+import Footer from "@/components/footer/footer";
+import Header from "@/components/header/header";
 import HeroContent from "@/components/heroContent/page";
-
+import ContactForm from "@/components/contactForm/contactForm";
+import Portfolio from "@/components/portfolio/portfolio";
 
 export default function Home() {
   return (
@@ -9,7 +10,10 @@ export default function Home() {
      
      <Header />
      <HeroContent />
+     <Portfolio />
+     <ContactForm />
      <Footer />
+
     </div>
   );
 }
