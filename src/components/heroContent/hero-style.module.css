@@ -3,16 +3,16 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-}
-
-.video {
+  }
+  
+  .video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     opacity: 0.5;
-}
-
-.heroContent {
+  }
+  
+  .heroContent {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -20,9 +20,58 @@
     text-align: center;
     z-index: 1;
     color: white;
-    font-size: 2rem;
-    font-weight: bold;
-    background: rgba(0, 0, 0, 0.5); /* Затемнение для читаемости */
-    padding: 20px;
+    max-width: 800px;
+    width: 90%;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 40px 30px;
     border-radius: 10px;
-}
+    backdrop-filter: blur(4px);
+  }
+  
+  .heroContentText h3 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .heroContentText p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .heroContentContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .heroContentContainerItem {
+    background-color: #0078d7;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  
+  .heroContentContainerItem:hover {
+    background-color: #005fa3;
+  }
+  
+  .heroContentContainerItemOutline {
+    border: 2px solid white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .heroContentContainerItemOutline:hover {
+    background-color: white;
+    color: black;
+  }
+  
