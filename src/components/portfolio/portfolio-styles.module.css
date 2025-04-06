@@ -3,6 +3,7 @@
     color: white;
     padding: 50px 20px;
     text-align: center;
+    border-bottom: 5px solid rgb(82, 82, 82);
   }
   
   .title {

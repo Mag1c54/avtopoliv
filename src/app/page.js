@@ -3,6 +3,7 @@ import Header from "@/components/header/header";
 import HeroContent from "@/components/heroContent/heroContent";
 import ContactForm from "@/components/contactForm/contactForm";
 import Portfolio from "@/components/portfolio/portfolio";
+import TheorySection from "@/components/theory/theory";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
      <Header />
      <HeroContent />
      <Portfolio />
+     <TheorySection />
      <ContactForm />
      <Footer /> 
 
