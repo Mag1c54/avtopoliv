@@ -18,10 +18,10 @@ const Footer = () => {
         {/* Соцсети */}
         <div className={styles.social}>
           <Link href="https://t.me/your-channel">
-            <Image src="/tg-icon.svg" alt="Telegram" width={40} height={40} />
+            <Image src="/icons/tg-icon.svg" alt="Telegram" width={40} height={40} />
           </Link>
           <Link href="https://vk.com/your-page">
-            <Image src="/whatsapp-icon.svg" alt="Whatsapp" width={40} height={40} />
+            <Image src="/icons/whatsapp-icon.svg" alt="Whatsapp" width={40} height={40} />
           </Link>
         </div>
 

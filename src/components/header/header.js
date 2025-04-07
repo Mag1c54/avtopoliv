@@ -48,10 +48,10 @@ const Header = () => {
         {/* Соцсети */}
         <div className={styles.social}>
           <Link href="https://wa.me/your-number">
-            <Image src="/whatsapp-icon.svg" alt="WhatsApp" width={30} height={30} />
+            <Image src="/icons/whatsapp-icon.svg" alt="WhatsApp" width={30} height={30} />
           </Link>
           <Link href="https://t.me/your-channel">
-            <Image src="/tg-icon.svg" alt="Telegram" width={30} height={30} />
+            <Image src="/icons/tg-icon.svg" alt="Telegram" width={30} height={30} />
           </Link>
         </div>
 

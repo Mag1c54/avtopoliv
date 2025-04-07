@@ -2,30 +2,30 @@ import styles from "./theory-style.module.css";
 import Image from "next/image";
 
 const features = [
-  { icon: "/grass-icon.svg", title: "Монтаж" },
-  { icon: "/grass-icon.svg", title: "Проектирование" },
-  { icon: "/grass-icon.svg", title: "Сервисное обслуживание" },
-  { icon: "/grass-icon.svg", title: "Зимняя консервация" }
+  { icon: "/icons/grass-icon.svg", title: "Монтаж" },
+  { icon: "/icons/grass-icon.svg", title: "Проектирование" },
+  { icon: "/icons/grass-icon.svg", title: "Сервисное обслуживание" },
+  { icon: "/icons/grass-icon.svg", title: "Зимняя консервация" }
 ];
 
 const applications = [
   {
-    icon: "/grass-icon.svg",
+    icon: "/icons/grass-icon.svg",
     title: "Частные объекты",
     desc: "Сады, огороды, перед коттеджами"
   },
   {
-    icon: "/grass-icon.svg",
+    icon: "/icons/grass-icon.svg",
     title: "Муниципальные территории",
     desc: "Парки и скверы"
   },
   {
-    icon: "/grass-icon.svg",
+    icon: "/icons/grass-icon.svg",
     title: "Коммерческие объекты",
     desc: "Перед ТЦ, офисами"
   },
   {
-    icon: "/grass-icon.svg",
+    icon: "/icons/grass-icon.svg",
     title: "Аграрные территории",
     desc: "Поля, фермерские хозяйства"
   }
