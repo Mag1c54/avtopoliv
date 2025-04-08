@@ -25,7 +25,7 @@ const projects = [
 
 const Portfolio = () => {
   return (
-    <section className={styles.projectsSection}>
+    <section className={styles.projectsSection} id="projects">
       <h2 className={styles.title}>Наши работы</h2>
       <p className={styles.subtitle}>Мы успешно реализовали множество проектов по автоматическому поливу.</p>
 

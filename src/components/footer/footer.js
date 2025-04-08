@@ -12,7 +12,7 @@ const Footer = () => {
       <div className={styles.container}>
         {/* Логотип */}
         <div className={styles.logo}>
-        <AutoPolivLogo />
+        <Link href="/"><AutoPolivLogo /></Link>
         </div>
 
         {/* Соцсети */}

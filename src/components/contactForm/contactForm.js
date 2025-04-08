@@ -4,7 +4,7 @@ import InputField from "./input/inputField";
 
 const ContactForm = () => {
   return (
-    <section className={styles.contactSection}>
+    <section className={styles.contactSection} id="contacts">
       <h2 className={styles.title}>Свяжитесь с нами</h2>
       <p className={styles.subtitle}>Оставьте заявку, и мы ответим в ближайшее время.</p>
 

@@ -33,7 +33,7 @@ const applications = [
 
 const TheorySection = () => {
   return (
-    <section className={styles.theorySection}>
+    <section className={styles.theorySection} id="services">
       {/* Заголовок услуг */}
       <h2 className={styles.sectionTitle}>Полный спектр услуг</h2>
 

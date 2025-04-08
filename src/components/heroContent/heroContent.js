@@ -1,6 +1,8 @@
 import styles from "./hero-style.module.css";
 import HeroVideo from "./hero-video";
 
+
+
 const HeroContent = () => {
   return (
     <HeroVideo>
@@ -14,10 +16,10 @@ const HeroContent = () => {
         </div>
 
         <div className={styles.heroContentContainer}>
-          <a href="#" className={styles.heroContentContainerItem}>
+          <a href="/catalog" className={styles.heroContentContainerItem}>
             Каталог оборудования
           </a>
-          <a href="#" className={styles.heroContentContainerItemOutline}>
+          <a href="#contacts" className={styles.heroContentContainerItemOutline}>
             Оставить заявку
           </a>
         </div>
