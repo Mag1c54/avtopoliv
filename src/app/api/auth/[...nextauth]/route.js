@@ -1,24 +1,31 @@
+// src/app/api/auth/[...nextauth]/route.js
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 export const authOptions = {
-  secret: process.env.NEXTAUTH_SECRET,
+  secret:process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        username: { label: 'Username', type: 'text' },
-        password: { label: 'Password', type: 'password' }
+        username: { label: 'Имя пользователя', type: 'text' },
+        password: { label: 'Пароль', type: 'password' }
       },
       async authorize(credentials) {
-        const user = { id: 1, name: 'admin', username: 'admin', password: 'admin123' };
+        const admin = {
+          id: 1,
+          name: 'admin',
+          username: 'admin',
+          password: 'admin123'
+        };
 
         if (
-          credentials.username === user.username &&
-          credentials.password === user.password
+          credentials.username === admin.username &&
+          credentials.password === admin.password
         ) {
-          return user;
+          return admin;
         }
+
         return null;
       }
     })
@@ -26,12 +33,14 @@ export const authOptions = {
   pages: {
     signIn: '/admin'
   },
-   session: {
+  session: {
     strategy: 'jwt'
   },
   callbacks: {
     async jwt({ token, user }) {
-      if (user) token.role = 'admin';
+      if (user) {
+        token.role = 'admin';
+      }
       return token;
     },
     async session({ session, token }) {
@@ -39,22 +48,8 @@ export const authOptions = {
       return session;
     }
   }
-
 };
 
 const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
 
-  // session: {
-  //   strategy: 'jwt'
-  // },
-  // callbacks: {
-  //   async jwt({ token, user }) {
-  //     if (user) token.role = 'admin';
-  //     return token;
-  //   },
-  //   async session({ session, token }) {
-  //     session.user.role = token.role;
-  //     return session;
-  //   }
-  // }
+export { handler as GET, handler as POST };

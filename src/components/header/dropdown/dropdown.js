@@ -1,22 +1,27 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./dropdown-style.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-const items = [
-  { id: 1, name: 'Роторные дождеватели', image: '/images/grass.png', href: '/catalog' },
-  { id: 2, name: 'Веерные дождеватели', image: '/images/grass.png', href: '/catalog' },
-  { id: 3, name: 'Сопла', image: '/images/grass.png', href: '/catalog' },
-  { id: 4, name: 'Гибкие колена', image: '/images/grass.png', href: '/catalog' },
-  { id: 5, name: 'Клапаны', image: '/images/grass.png', href: '/catalog' },
-  { id: 6, name: 'Пульты управления', image: '/images/grass.png', href: '/catalog' },
-  // Добавь ещё по желанию
-];
-
 const DropdownMenu = ({ title }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("/api/categories");
+        const data = await res.json();
+        setCategories(data);
+      } catch (error) {
+        console.error("Ошибка при загрузке категорий", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   return (
     <div
@@ -28,9 +33,15 @@ const DropdownMenu = ({ title }) => {
 
       {isOpen && (
         <div className={styles.dropdownContent}>
-          {items.map(item => (
+          {categories.map(item => (
             <Link href={item.href} key={item.id} className={styles.item}>
-              <Image src={item.image} alt={item.name} width={50} height={50} />
+              <Image
+                src={item.image || '/images/grass.png'}
+                alt={item.name}
+                width={50}
+                height={50}
+              />
+
               <span>{item.name}</span>
             </Link>
           ))}
