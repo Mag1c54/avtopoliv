@@ -16,14 +16,18 @@
   }
   
   .productCard {
-    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* чтобы цена уходила вниз */
+    height: 100%; /* чтобы карточки были одинаковой высоты */
+    background-color: #000;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease;
+    color: #fff; /* чтобы текст был виден на чёрном фоне */
   }
-  
   .productCard:hover {
     transform: translateY(-10px);
   }
@@ -35,13 +39,13 @@
   
   .productDescription {
     font-size: 1rem;
-    color: #666;
+    color: #a7a7a7;
     margin-bottom: 15px;
   }
   
   .productPrice {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #333;
+    color: #fff;
   }
   
