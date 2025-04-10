@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 module.exports  = { prisma };
 
-
+;
 
 async function testDb() {
   const news = await prisma.news.findMany();

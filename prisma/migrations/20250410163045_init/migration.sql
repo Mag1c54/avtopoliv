@@ -1,12 +1,13 @@
 -- CreateTable
-CREATE TABLE "FormSubmission" (
+CREATE TABLE "ContactRequest" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "phone" TEXT NOT NULL,
     "message" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "FormSubmission_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ContactRequest_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -29,4 +30,14 @@ CREATE TABLE "News" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "News_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Category" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "imageUrl" TEXT NOT NULL,
+    "href" TEXT NOT NULL,
+
+    CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );

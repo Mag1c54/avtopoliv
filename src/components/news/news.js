@@ -35,7 +35,7 @@ const NewsBlock = () => {
         {visibleNews.map((item) => (
           <div key={item.id} className={styles.newsCard}>
             <Image
-              src={item.imageUrl} // Используем imageUrl из данных
+              src={item.imageUrl || '/images/grass.jpg'}  // Используем imageUrl из данных
               alt={item.title}
               width={400}
               height={200}

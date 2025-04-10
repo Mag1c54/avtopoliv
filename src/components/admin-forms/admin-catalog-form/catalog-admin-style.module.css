@@ -1,0 +1,200 @@
+.catalogSection {
+    padding: 2rem;
+    background-color: #f5f5f5;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #333;
+  }
+  
+  .toggleButton {
+    background-color: #0070f3;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  
+  .form {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #444;
+  }
+  
+  .form input,
+  .form textarea {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .form button {
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.2s;
+    margin-right: 0.5rem;
+  }
+  
+  .form button:hover {
+    background-color: #0059c1;
+  }
+  
+  .catalogGrid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .cardContent {
+    padding: 1rem;
+  }
+  
+  .cardContent h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #222;
+  }
+  
+  .cardContent p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: #444;
+  }
+  
+  .cardContent span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .deleteButton {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.2s;
+  }
+  
+  .deleteButton:hover {
+    background-color: #c92c3a;
+  }
+  
+  .editForm {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: #f0f4f8;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .editForm h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .editForm input,
+  .editForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .editForm textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .editFormButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .moreBtn {
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+  }
+  
+  .moreBtn:hover {
+    background-color: #005bb5;
+  }
+  
+  /* Улучшение доступности */
+  input:focus,
+  textarea:focus {
+    outline: 2px solid #0070f3;
+    border-color: #0070f3;
+  }
+  
+  button:focus {
+    outline: 2px solid #0070f3;
+  }
+  

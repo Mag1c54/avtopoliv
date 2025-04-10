@@ -32,7 +32,7 @@ model CatalogItem {
 
 model News {
   id          Int      @id @default(autoincrement())
-  title       String
+  title       String   
   content     String
   imageUrl    String?
   createdAt   DateTime @default(now())
