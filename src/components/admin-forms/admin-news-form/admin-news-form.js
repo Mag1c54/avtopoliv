@@ -1,79 +1,107 @@
-'use client';
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import styles from './admin-style-news.module.css';
+"use client";
 
-const NewsAdminBlock = () => {
+import { useEffect, useState } from "react";
+import styles from "./admin-style-news.module.css";
+import Image from "next/image";
+
+export default function NewsAdminBlock() {
   const [news, setNews] = useState([]);
-  const [editingNews, setEditingNews] = useState(null);
-  const [newNews, setNewNews] = useState({
-    title: '',
-    content: '',
-    imageUrl: ''
+  const [isOpen, setIsOpen] = useState(false);
+  const [form, setForm] = useState({
+    title: "",
+    content: "",
   });
-  const [isOpen, setIsOpen] = useState(false); // 🔧 добавлено состояние
+  const [imageFile, setImageFile] = useState(null);
+  const [editingNews, setEditingNews] = useState(null);
 
-  useEffect(() => {
-    const fetchNews = async () => {
-      const res = await fetch('/api/news');
-      if (res.ok) {
-        const data = await res.json();
-        setNews(data);
-      }
-    };
+  const fetchNews = async () => {
+    const res = await fetch("/api/news");
+    const data = await res.json();
+    setNews(data);
+  };
 
-    fetchNews();
-  }, []);
-
-  const handleDelete = async (id) => {
-    const confirmed = confirm('Удалить новость?');
+  const deleteNews = async (id) => {
+    const confirmed = confirm("Удалить новость?");
     if (!confirmed) return;
 
-    const res = await fetch('/api/news', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch("/api/news", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     });
 
-    if (res.ok) {
-      setNews(news.filter((n) => n.id !== id));
+    if (res.ok) fetchNews();
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (editingNews) {
+      setEditingNews((prev) => ({ ...prev, [name]: value }));
     } else {
-      alert('Ошибка при удалении');
+      setForm((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!imageFile) {
+      alert("Пожалуйста, выбери изображение");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", imageFile);
+
+    const uploadRes = await fetch("/api/uploadImage", {
+      method: "POST",
+      body: formData,
+    });
+
+    const uploadData = await uploadRes.json();
+    if (!uploadRes.ok || !uploadData.imageUrl) {
+      alert("Ошибка при загрузке изображения");
+      return;
+    }
+
+    const res = await fetch("/api/news", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...form, imageUrl: uploadData.imageUrl }),
+    });
+
+    if (res.ok) {
+      setForm({ title: "", content: "" });
+      setImageFile(null);
+      fetchNews();
+    } else {
+      alert("Ошибка при добавлении новости!");
     }
   };
 
   const handleUpdate = async () => {
-    const res = await fetch('/api/news', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch("/api/news", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editingNews),
     });
 
     if (res.ok) {
-      const updated = await res.json();
-      setNews(news.map((n) => (n.id === updated.id ? updated : n)));
       setEditingNews(null);
+      fetchNews();
     } else {
-      alert('Ошибка при обновлении');
+      alert("Ошибка при обновлении новости!");
     }
   };
 
-  const handleCreate = async () => {
-    console.log(handleCreate)
-    const res = await fetch('/api/news', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newNews),
-    });
-
-    if (res.ok) {
-      const created = await res.json();
-      setNews([created, ...news]);
-      setNewNews({ title: '', content: '', imageUrl: '' });
-    } else {
-      alert('Ошибка при создании');
-    }
-  };
+  useEffect(() => {
+    fetchNews();
+  }, []);
 
   return (
     <section className={styles.newsSection}>
@@ -81,63 +109,60 @@ const NewsAdminBlock = () => {
         className={styles.toggleButton}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? 'Скрыть новости' : 'Управление новостями'}
+        {isOpen ? "Скрыть новости" : "Управление новостями"}
       </button>
 
       {isOpen && (
         <>
-          <h2 className={styles.title}>Управление новостями</h2>
-
-          {/* --- Add Form --- */}
-          <div className={styles.editForm}>
-            <h3>Добавить новость</h3>
+          <h2 className={styles.title}>Добавить новость</h2>
+          <form onSubmit={handleSubmit} className={styles.form}>
             <input
-              type="text"
+              name="title"
               placeholder="Заголовок"
-              value={newNews.title}
-              onChange={(e) => setNewNews({ ...newNews, title: e.target.value })}
+              value={form.title}
+              onChange={handleChange}
+              required
             />
             <textarea
+              name="content"
               placeholder="Контент"
-              value={newNews.content}
-              onChange={(e) => setNewNews({ ...newNews, content: e.target.value })}
+              value={form.content}
+              onChange={handleChange}
+              required
             />
             <input
-              type="text"
-              placeholder="URL изображения"
-              value={newNews.imageUrl}
-              onChange={(e) => setNewNews({ ...newNews, imageUrl: e.target.value })}
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              required
             />
-            <button className={styles.moreBtn} onClick={handleCreate}>
-              ➕ Добавить новость
-            </button>
-          </div>
+            <button type="submit">➕ Добавить новость</button>
+          </form>
 
-          {/* --- News List --- */}
+          <h2 className={styles.title}>Список новостей</h2>
           <div className={styles.newsGrid}>
             {news.map((item) => (
-              <div key={item.id} className={styles.newsCard}>
+              <div key={item.id} className={styles.card}>
                 <Image
                   src={item.imageUrl}
                   alt={item.title}
                   width={400}
                   height={200}
-                  className={styles.newsImage}
                 />
-                <div className={styles.newsContent}>
-                  <h3 className={styles.newsTitle}>{item.title}</h3>
-                  <p className={styles.newsDate}>
-                    {new Date(item.createdAt).toLocaleDateString()}
-                  </p>
+                <div className={styles.cardContent}>
+                  <h3>{item.title}</h3>
+                  <p>{item.content}</p>
+                  <p>{new Date(item.createdAt).toLocaleDateString()}</p>
+                  
                   <button
-                    className={styles.moreBtn}
+                    className={styles.deleteButton}
                     onClick={() => setEditingNews(item)}
                   >
                     ✏️ Изменить
                   </button>
                   <button
-                    className={styles.moreBtn}
-                    onClick={() => handleDelete(item.id)}
+                    className={styles.deleteButton}
+                    onClick={() => deleteNews(item.id)}
                   >
                     🗑️ Удалить
                   </button>
@@ -146,41 +171,28 @@ const NewsAdminBlock = () => {
             ))}
           </div>
 
-          {/* --- Edit Form --- */}
           {editingNews && (
             <div className={styles.editForm}>
               <h3>Редактировать новость</h3>
               <input
-                type="text"
+                name="title"
                 placeholder="Заголовок"
                 value={editingNews.title}
-                onChange={(e) =>
-                  setEditingNews({ ...editingNews, title: e.target.value })
-                }
+                onChange={handleChange}
               />
               <textarea
+                name="content"
                 placeholder="Контент"
                 value={editingNews.content}
-                onChange={(e) =>
-                  setEditingNews({ ...editingNews, content: e.target.value })
-                }
+                onChange={handleChange}
               />
-              <input
-                type="text"
-                placeholder="URL изображения"
-                value={editingNews.imageUrl}
-                onChange={(e) =>
-                  setEditingNews({ ...editingNews, imageUrl: e.target.value })
-                }
-              />
-              <div style={{ marginTop: '1rem' }}>
+              <div className={styles.editFormButtons}>
                 <button className={styles.moreBtn} onClick={handleUpdate}>
                   💾 Сохранить
                 </button>
                 <button
                   className={styles.moreBtn}
                   onClick={() => setEditingNews(null)}
-                  style={{ marginLeft: '10px' }}
                 >
                   ❌ Отмена
                 </button>
@@ -191,6 +203,4 @@ const NewsAdminBlock = () => {
       )}
     </section>
   );
-};
-
-export default NewsAdminBlock;
+}

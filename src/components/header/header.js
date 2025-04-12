@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -11,6 +11,13 @@ import DropDownMenu from "./dropdown/dropdown";
 const Header = () => {
   const pathname = usePathname();
   const router = useRouter();
+
+  // Статичные данные категорий
+  const categories = [
+    { id: 1, name: "Категория 1", href: "/catalog", image: "/images/grass.png" },
+    { id: 2, name: "Категория 2", href: "/catalog", image: "/images/grass.png" },
+    { id: 3, name: "Категория 3", href: "/catalog", image: "/images/grass.png" },
+  ];
 
   const handleAnchorClick = (e, id) => {
     e.preventDefault();
@@ -41,7 +48,8 @@ const Header = () => {
           <a href="#projects" onClick={(e) => handleAnchorClick(e, "projects")}>Работы</a>
           <a href="#contacts" onClick={(e) => handleAnchorClick(e, "contacts")}>Контакты</a>
 
-          <DropDownMenu title="Каталог ▾"/>
+          {/* Передаем данные категорий в DropdownMenu */}
+          <DropDownMenu title="Каталог ▾" categories={categories} />
         </nav>
 
         <div className={styles.social}>

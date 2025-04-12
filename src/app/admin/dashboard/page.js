@@ -4,7 +4,8 @@ import { redirect } from 'next/navigation';
 import LogoutButton from '@/components/logout-button/logoutButton';
 import CatalogAdminForm from '@/components/admin-forms/admin-catalog-form/admin-catalog-form';
 import NewsAdminBlock from '@/components/admin-forms/admin-news-form/admin-news-form';
-import AdminCategoriesForm from "@/components/admin-forms/admin-categories-form/admin-categories-form"
+import ContactAdminForm from '@/components/admin-forms/admin-contact-form/admin-contact-form';
+
 
 
 
@@ -22,7 +23,7 @@ export default async function AdminDashboard() {
       <h1>Админ панель </h1>
       <CatalogAdminForm />
       <NewsAdminBlock />
-     <AdminCategoriesForm />
+      <ContactAdminForm />
       <LogoutButton />
     </div>
   );

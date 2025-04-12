@@ -120,7 +120,7 @@
   }
   
   .deleteButton {
-    background-color: #e63946;
+    background-color: #0070f3;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -128,6 +128,7 @@
     cursor: pointer;
     font-size: 0.95rem;
     transition: background-color 0.2s;
+    
   }
   
   .deleteButton:hover {

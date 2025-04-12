@@ -1,68 +1,96 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import styles from './catalog-admin-style.module.css';
-import Image from 'next/image';
+import { useEffect, useState } from "react";
+import styles from "./catalog-admin-style.module.css";
+import Image from "next/image";
 
 export default function CatalogAdminForm() {
   const [catalog, setCatalog] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState({
-    title: '',
-    description: '',
-    price: '',
-    imageUrl: '',
+    title: "",
+    description: "",
+    price: "",
   });
+  const [imageFile, setImageFile] = useState(null);
   const [editingItem, setEditingItem] = useState(null);
 
   const fetchCatalog = async () => {
-    const res = await fetch('/api/catalog');
+    const res = await fetch("/api/catalog");
     const data = await res.json();
     setCatalog(data);
   };
 
   const deleteItem = async (id) => {
-    const confirmed = confirm('Удалить товар?');
+    const confirmed = confirm("Удалить товар?");
     if (!confirmed) return;
 
-    await fetch('/api/catalog', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch("/api/catalog", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     });
-    fetchCatalog();
+
+    if (res.ok) fetchCatalog();
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (editingItem) {
-      setEditingItem({ ...editingItem, [name]: value });
+      setEditingItem((prev) => ({ ...prev, [name]: value }));
     } else {
-      setForm({ ...form, [name]: value });
+      setForm((prev) => ({ ...prev, [name]: value }));
     }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch('/api/catalog', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form),
+
+    if (!imageFile) {
+      alert("Пожалуйста, выбери изображение");
+      return;
+    }
+
+    // 1. Загружаем изображение
+    const formData = new FormData();
+    formData.append("file", imageFile);
+
+    const uploadRes = await fetch("/api/uploadImage", {
+      method: "POST",
+      body: formData,
+    });
+
+    const uploadData = await uploadRes.json();
+    if (!uploadRes.ok || !uploadData.imageUrl) {
+      alert("Ошибка при загрузке изображения");
+      return;
+    }
+
+    // 2. Сохраняем товар
+    const res = await fetch("/api/catalog", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...form, imageUrl: uploadData.imageUrl }),
     });
 
     if (res.ok) {
-      setForm({ title: '', description: '', price: '', imageUrl: '' });
+      setForm({ title: "", description: "", price: "" });
+      setImageFile(null);
       fetchCatalog();
     } else {
-      alert('Ошибка при добавлении!');
+      alert("Ошибка при добавлении товара!");
     }
   };
 
   const handleUpdate = async () => {
-    const res = await fetch('/api/catalog', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch("/api/catalog", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editingItem),
     });
 
@@ -70,7 +98,7 @@ export default function CatalogAdminForm() {
       setEditingItem(null);
       fetchCatalog();
     } else {
-      alert('Ошибка при обновлении!');
+      alert("Ошибка при обновлении товара!");
     }
   };
 
@@ -84,7 +112,7 @@ export default function CatalogAdminForm() {
         className={styles.toggleButton}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? 'Скрыть каталог' : 'Управление каталогом'}
+        {isOpen ? "Скрыть каталог" : "Управление каталогом"}
       </button>
 
       {isOpen && (
@@ -113,10 +141,9 @@ export default function CatalogAdminForm() {
               required
             />
             <input
-              name="imageUrl"
-              placeholder="URL изображения"
-              value={form.imageUrl}
-              onChange={handleChange}
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
               required
             />
             <button type="submit">➕ Добавить товар</button>
@@ -126,22 +153,27 @@ export default function CatalogAdminForm() {
           <div className={styles.catalogGrid}>
             {catalog.map((item) => (
               <div key={item.id} className={styles.card}>
-                <Image src={item.imageUrl} alt={item.title} width={400} height={200} />
+                <Image
+                  src={item.imageUrl}
+                  alt={item.title}
+                  width={400}
+                  height={200}
+                />
                 <div className={styles.cardContent}>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
                   <span>{item.price}₽</span>
                   <button
                     className={styles.deleteButton}
-                    onClick={() => deleteItem(item.id)}
-                  >
-                    🗑️ Удалить
-                  </button>
-                  <button
-                    className={styles.deleteButton}
                     onClick={() => setEditingItem(item)}
                   >
                     ✏️ Изменить
+                  </button>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => deleteItem(item.id)}
+                  >
+                    🗑️ Удалить
                   </button>
                 </div>
               </div>
@@ -149,46 +181,39 @@ export default function CatalogAdminForm() {
           </div>
 
           {editingItem && (
-  <div className={styles.editForm}>
-    <h3>Редактировать товар</h3>
-    <input
-      name="title"
-      placeholder="Название"
-      value={editingItem.title}
-      onChange={handleChange}
-    />
-    <textarea
-      name="description"
-      placeholder="Описание"
-      value={editingItem.description}
-      onChange={handleChange}
-    />
-    <input
-      name="price"
-      placeholder="Цена"
-      value={editingItem.price}
-      onChange={handleChange}
-    />
-    <input
-      name="imageUrl"
-      placeholder="URL изображения"
-      value={editingItem.imageUrl}
-      onChange={handleChange}
-    />
-    <div className={styles.editFormButtons}>
-      <button className={styles.moreBtn} onClick={handleUpdate}>
-        💾 Сохранить
-      </button>
-      <button
-        className={styles.moreBtn}
-        onClick={() => setEditingItem(null)}
-      >
-        ❌ Отмена
-      </button>
-    </div>
-  </div>
-)}
-
+            <div className={styles.editForm}>
+              <h3>Редактировать товар</h3>
+              <input
+                name="title"
+                placeholder="Название"
+                value={editingItem.title}
+                onChange={handleChange}
+              />
+              <textarea
+                name="description"
+                placeholder="Описание"
+                value={editingItem.description}
+                onChange={handleChange}ф
+              />
+              <input
+                name="price"
+                placeholder="Цена"
+                value={editingItem.price}
+                onChange={handleChange}
+              />
+              <div className={styles.editFormButtons}>
+                <button className={styles.moreBtn} onClick={handleUpdate}>
+                  💾 Сохранить
+                </button>
+                <button
+                  className={styles.moreBtn}
+                  onClick={() => setEditingItem(null)}
+                >
+                  ❌ Отмена
+                </button>
+              </div>
+            </div>
+          )}
         </>
       )}
     </section>

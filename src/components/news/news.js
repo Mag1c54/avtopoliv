@@ -43,6 +43,7 @@ const NewsBlock = () => {
             />
             <div className={styles.newsContent}>
               <h3 className={styles.newsTitle}>{item.title}</h3>
+              <p>{item.content}</p>
               <p className={styles.newsDate}>{new Date(item.createdAt).toLocaleDateString()}</p>
               <button className={styles.moreBtn}>Подробнее</button>
             </div>

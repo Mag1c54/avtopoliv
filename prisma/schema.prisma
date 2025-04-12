@@ -37,9 +37,3 @@ model News {
   imageUrl    String?
   createdAt   DateTime @default(now())
 }
-model Category {
-  id        Int     @id @default(autoincrement())
-  name      String
-  imageUrl  String
-  href      String
-}
