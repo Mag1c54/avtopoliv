@@ -108,6 +108,7 @@ export default function CatalogAdminForm() {
       <h2 className={styles.title}>Добавить товар</h2>
       <form onSubmit={handleSubmit} className={styles.form}>
         <input
+          className={styles["input-focus"]}
           name="title"
           placeholder="Название"
           value={form.title}
@@ -115,6 +116,7 @@ export default function CatalogAdminForm() {
           required
         />
         <textarea
+          className={styles["textarea-focus"]}
           name="description"
           placeholder="Описание"
           value={form.description}
@@ -122,6 +124,7 @@ export default function CatalogAdminForm() {
           required
         />
         <input
+          className={styles["input-focus"]}
           name="price"
           placeholder="Цена"
           value={form.price}
@@ -172,18 +175,21 @@ export default function CatalogAdminForm() {
         <div className={styles.editForm}>
           <h3>Редактировать товар</h3>
           <input
+            className={styles["input-focus"]}
             name="title"
             placeholder="Название"
             value={editingItem.title}
             onChange={handleChange}
           />
           <textarea
+            className={styles["textarea-focus"]}
             name="description"
             placeholder="Описание"
             value={editingItem.description}
             onChange={handleChange}
           />
           <input
+            className={styles["input-focus"]}
             name="price"
             placeholder="Цена"
             value={editingItem.price}
