@@ -15,7 +15,13 @@
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-
+.media {
+  width: 100%;
+  height: 320px; /* Фиксированная высота для изображений */
+  border-radius: 12px;
+  margin-bottom: 16px;
+  object-fit: cover;
+}
 
 .title {
   font-size: 1.5rem;

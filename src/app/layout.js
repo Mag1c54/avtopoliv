@@ -1,9 +1,13 @@
 import "./globals.css";
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 export const metadata = {
   title: "Автополив РФ",
   description: "Автоматический полив купить в Москве",
-  viewport: "width=device-width, initial-scale=1",
+
 };
 
 

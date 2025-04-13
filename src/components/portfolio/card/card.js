@@ -10,11 +10,11 @@ const PortfolioCard = ({ project }) => {
           src={project.video}
           controls
           className={styles.media}
-          poster={project.image || "/images/default-poster.jpg"}
+          poster={project.image || "/images/grass.png"}
         />
       ) : (
         <Image
-          src={project.image}
+          src={project.image || "/images/grass.png"}
           alt={project.title}
           width={350}
           height={200}
