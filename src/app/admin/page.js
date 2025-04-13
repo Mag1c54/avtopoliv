@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
+import styles from './admin-style-login.module.css';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -25,12 +26,27 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Вход в админ-панель</h2>
-      <input name="username" placeholder="Логин" required />
-      <input name="password" type="password" placeholder="Пароль" required />
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <button type="submit">Войти</button>
-    </form>
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <h2 className={styles.title}>🔒 Вход в админ-панель</h2>
+        <input
+          name="username"
+          placeholder="Логин"
+          required
+          className={styles.input}
+        />
+        <input
+          name="password"
+          type="password"
+          placeholder="Пароль"
+          required
+          className={styles.input}
+        />
+        {error && <p className={styles.error}>{error}</p>}
+        <button type="submit" className={styles.button}>
+          Войти
+        </button>
+      </form>
+    </div>
   );
 }

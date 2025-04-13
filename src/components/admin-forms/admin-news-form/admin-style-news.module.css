@@ -1,13 +1,14 @@
 .newsSection {
   padding: 2rem;
-  background-color: #f5f5f5;
+  background-color: #222222;
 }
 
 .title {
   font-size: 2rem;
   margin-bottom: 1.5rem;
   text-align: center;
-  color: #333;
+  color: white;
+  padding-top: 30px;
 }
 
 .toggleButton {
@@ -83,6 +84,8 @@
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  max-width: 400px;
+  
 }
 
 .card:hover {
@@ -92,7 +95,7 @@
 
 .card img {
   width: 100%;
-  height: auto;
+  height: 250px;
   object-fit: cover;
 }
 

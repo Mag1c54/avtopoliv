@@ -1,13 +1,14 @@
 .catalogSection {
     padding: 2rem;
-    background-color: #f5f5f5;
+    background-color: #222222;
   }
   
   .title {
     font-size: 2rem;
     margin-bottom: 1.5rem;
     text-align: center;
-    color: #333;
+    color: white;
+    padding-top: 30px;
   }
   
   .toggleButton {
@@ -92,7 +93,7 @@
   
   .card img {
     width: 100%;
-    height: auto;
+    height: 250px;
     object-fit: cover;
   }
   

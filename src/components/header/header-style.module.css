@@ -1,49 +1,102 @@
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-    z-index: 1000;
-  }
-  
-  
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1400px;
-    margin: 0 auto;
-  
-  }
-  
-  .logoSection {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .nav {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-  }
-  
-  .nav a {
-    text-decoration: none;
-    color: black;
-    font-weight: 500;
-    position: relative;
-  }
-  
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  z-index: 1000;
+}
 
-  
-  /* Стили для социальных иконок */
-  .social {
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Бургер и навигация */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  transition: all 0.3s ease;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  position: relative;
+}
+
+.social {
+  display: flex;
+  gap: 10px;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+  .burger {
     display: flex;
-    gap: 10px;
   }
-  
+
+  .nav {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 20px;
+    background: white;
+    gap: 20px;
+    display: none;
+    border-top: 1px solid #eee;
+    z-index: 999;
+  }
+
+  .nav.active {
+    display: flex;
+  }
+
+  .social {
+    display: none;
+  }
+}

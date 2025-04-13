@@ -4,18 +4,14 @@ import Image from "next/image";
 import styles from "./footer-style.module.css";
 import AutoPolivLogo from "../logo";
 
-
-
 const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        {/* Логотип */}
         <div className={styles.logo}>
-        <Link href="/"><AutoPolivLogo /></Link>
+          <Link href="/"><AutoPolivLogo /></Link>
         </div>
 
-        {/* Соцсети */}
         <div className={styles.social}>
           <Link href="https://t.me/your-channel">
             <Image src="/icons/tg-icon.svg" alt="Telegram" width={40} height={40} />
@@ -25,9 +21,8 @@ const Footer = () => {
           </Link>
         </div>
 
-        {/* Копирайт */}
         <div className={styles.copyright}>
-          © 1999-2025 Автополив РФ
+          © 1999–2025 Автополив РФ
         </div>
       </div>
     </footer>

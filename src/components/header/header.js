@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
@@ -11,8 +11,8 @@ import DropDownMenu from "./dropdown/dropdown";
 const Header = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Статичные данные категорий
   const categories = [
     { id: 1, name: "Категория 1", href: "/catalog", image: "/images/grass.png" },
     { id: 2, name: "Категория 2", href: "/catalog", image: "/images/grass.png" },
@@ -21,15 +21,12 @@ const Header = () => {
 
   const handleAnchorClick = (e, id) => {
     e.preventDefault();
+    setMenuOpen(false); // закрытие меню при клике
 
     if (pathname === "/") {
-      // Если мы уже на главной — просто скроллим
       const section = document.getElementById(id);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
+      if (section) section.scrollIntoView({ behavior: "smooth" });
     } else {
-      // Если не на главной — переходим с якорем
       router.push(`/#${id}`);
     }
   };
@@ -41,14 +38,19 @@ const Header = () => {
           <Link href="/"><AutoPolivLogo /></Link>
         </div>
 
-        <nav className={styles.nav}>
+        {/* Бургер */}
+        <div className={styles.burger} onClick={() => setMenuOpen(!menuOpen)}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+
+        <nav className={`${styles.nav} ${menuOpen ? styles.active : ""}`}>
           <a href="#about" onClick={(e) => handleAnchorClick(e, "about")}>О нас</a>
           <a href="#news" onClick={(e) => handleAnchorClick(e, "news")}>Новости</a>
           <a href="#services" onClick={(e) => handleAnchorClick(e, "services")}>Услуги</a>
           <a href="#projects" onClick={(e) => handleAnchorClick(e, "projects")}>Работы</a>
           <a href="#contacts" onClick={(e) => handleAnchorClick(e, "contacts")}>Контакты</a>
-
-          {/* Передаем данные категорий в DropdownMenu */}
           <DropDownMenu title="Каталог ▾" categories={categories} />
         </nav>
 

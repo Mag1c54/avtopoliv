@@ -33,14 +33,7 @@ export default function ContactAdminForm() {
 
   return (
     <section className={styles.contactSection}>
-      <button
-        className={styles.toggleButton}
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? "Скрыть контакты" : "Управление контактами"}
-      </button>
-
-      {isOpen && (
+      
         <>
           <h2 className={styles.title}>Список контактов</h2>
           <div className={styles.contactGrid}>
@@ -63,7 +56,7 @@ export default function ContactAdminForm() {
             ))}
           </div>
         </>
-      )}
+      
     </section>
   );
 }

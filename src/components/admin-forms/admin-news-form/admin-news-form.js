@@ -105,14 +105,9 @@ export default function NewsAdminBlock() {
 
   return (
     <section className={styles.newsSection}>
-      <button
-        className={styles.toggleButton}
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? "Скрыть новости" : "Управление новостями"}
-      </button>
+    
 
-      {isOpen && (
+      
         <>
           <h2 className={styles.title}>Добавить новость</h2>
           <form onSubmit={handleSubmit} className={styles.form}>
@@ -200,7 +195,7 @@ export default function NewsAdminBlock() {
             </div>
           )}
         </>
-      )}
+      
     </section>
   );
 }
