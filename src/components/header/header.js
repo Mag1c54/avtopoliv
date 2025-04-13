@@ -14,10 +14,32 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const categories = [
-    { id: 1, name: "Категория 1", href: "/catalog", image: "/images/grass.png" },
-    { id: 2, name: "Категория 2", href: "/catalog", image: "/images/grass.png" },
-    { id: 3, name: "Категория 3", href: "/catalog", image: "/images/grass.png" },
+    {
+      id: 1,
+      name: "Автополив газонов",
+      href: "/catalog",
+      image: "/images/grass.png",
+    },
+    {
+      id: 2,
+      name: "Полив садов и огородов",
+      href: "/catalog",
+      image: "/images/grass.png",
+    },
+    {
+      id: 3,
+      name: "Капельный полив для растений",
+      href: "/catalog",
+      image: "/images/grass.png",
+    },
+    {
+      id: 4,
+      name: "Системы полива для теплиц",
+      href: "/catalog",
+      image: "/images/grass.png",
+    },
   ];
+  
 
   const handleAnchorClick = (e, id) => {
     e.preventDefault();

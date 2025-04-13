@@ -22,7 +22,7 @@ const Footer = () => {
         </div>
 
         <div className={styles.copyright}>
-          © 1999–2025 Автополив РФ
+          © 2025 Автополив РФ
         </div>
       </div>
     </footer>

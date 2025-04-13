@@ -1,14 +1,16 @@
+/* dropdown-style.module.css */
+
 .dropdown {
   position: relative;
 }
 
 .dropbtn {
-
   color: white;
   padding: 12px 20px;
   font-size: 16px;
   border: none;
   cursor: pointer;
+  background-color: #333;
 }
 
 .dropdownContent {
@@ -20,8 +22,9 @@
   background-color: white;
   width: 600px;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 999;
+  transition: all 0.3s ease;
 }
 
 .item {
@@ -40,4 +43,40 @@
 
 .item img {
   margin-right: 10px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .dropdownContent {
+    width: 100%; /* Ширина контента на мобильных устройствах */
+    padding: 10px;
+  }
+
+  .item {
+    width: 100%; /* Карточки занимают всю ширину */
+    padding: 15px;
+    justify-content: center;
+  }
+
+  .dropbtn {
+    padding: 12px 15px;
+    font-size: 14px; /* Уменьшаем размер на мобильных */
+  }
+}
+
+@media (max-width: 480px) {
+  .dropdownContent {
+    width: 100%; /* Ширина контента для маленьких экранов */
+    padding: 5px;
+  }
+
+  .item {
+    width: 100%; /* Карточки занимают всю ширину на маленьких экранах */
+    padding: 10px;
+  }
+
+  .dropbtn {
+    padding: 10px 15px;
+    font-size: 12px; /* Уменьшаем размер кнопки на очень маленьких экранах */
+  }
 }

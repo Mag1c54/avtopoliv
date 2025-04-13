@@ -1,3 +1,4 @@
+/* .header - фиксированное расположение хедера */
 .header {
   position: fixed;
   top: 0;
@@ -24,7 +25,7 @@
   gap: 10px;
 }
 
-/* Бургер и навигация */
+/* Стиль для бургера */
 .burger {
   display: none;
   flex-direction: column;
@@ -39,6 +40,7 @@
   transition: all 0.3s ease;
 }
 
+/* Стиль для навигации */
 .nav {
   display: flex;
   align-items: center;
@@ -57,33 +59,22 @@
   gap: 10px;
 }
 
-.burger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  padding: 10px;
-}
-
-.burger div {
-  width: 25px;
-  height: 3px;
-  background-color: black;
-  transition: 0.3s;
-}
-
+/* Адаптивность для мобильных */
 @media (max-width: 768px) {
+  /* Показ бургера */
   .burger {
     display: flex;
   }
 
+  /* Меню при активном бургере */
   .nav {
     position: absolute;
     top: 60px;
     left: 0;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%;
+    width: 100%;  /* Устанавливаем ширину на 100% */
+    max-width: 100%; /* Убедимся, что меню не выходит за пределы */
     padding: 20px;
     background: white;
     gap: 20px;
@@ -98,5 +89,12 @@
 
   .social {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Для очень маленьких экранов, можно немного уменьшить padding */
+  .nav {
+    padding: 10px;
   }
 }

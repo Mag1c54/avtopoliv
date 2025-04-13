@@ -3,20 +3,20 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 export const authOptions = {
-  secret:process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
         username: { label: 'Имя пользователя', type: 'text' },
-        password: { label: 'Пароль', type: 'password' }
+        password: { label: 'Пароль', type: 'password' },
       },
       async authorize(credentials) {
         const admin = {
           id: 1,
           name: 'admin',
-          username: 'admin',
-          password: 'admin123'
+          username: process.env.ADMIN_USERNAME,
+          password: process.env.ADMIN_PASSWORD,
         };
 
         if (
@@ -27,14 +27,15 @@ export const authOptions = {
         }
 
         return null;
-      }
-    })
+      },
+    }),
   ],
   pages: {
-    signIn: '/admin'
+    signIn: '/admin',
   },
   session: {
-    strategy: 'jwt'
+    strategy: 'jwt',
+    maxAge: 24 * 60 * 60, 
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -46,8 +47,8 @@ export const authOptions = {
     async session({ session, token }) {
       session.user.role = token.role;
       return session;
-    }
-  }
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
