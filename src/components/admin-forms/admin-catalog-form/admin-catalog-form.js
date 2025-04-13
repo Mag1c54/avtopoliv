@@ -49,33 +49,34 @@ export default function CatalogAdminForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!imageFile) {
       alert("Пожалуйста, выбери изображение");
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("file", imageFile);
-  
+
+    // Загружаем изображение
     const uploadRes = await fetch("/api/uploadImage", {
       method: "POST",
       body: formData,
     });
-  
+
     const uploadData = await uploadRes.json();
     if (!uploadRes.ok || !uploadData.imageUrl) {
       alert("Ошибка при загрузке изображения");
       return;
     }
-  
-    // Отправляем данные о товаре в API
+
+    // Добавляем товар с загруженным изображением
     const res = await fetch("/api/catalog", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...form, imageUrl: uploadData.imageUrl }),
     });
-  
+
     if (res.ok) {
       setForm({ title: "", description: "", price: "" });
       setImageFile(null);
