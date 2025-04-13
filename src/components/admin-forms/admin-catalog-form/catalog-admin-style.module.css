@@ -201,16 +201,7 @@
   background-color: #005bb5;
 }
 
-/* Улучшение доступности */
-input:focus,
-textarea:focus {
-  outline: 2px solid #0070f3;
-  border-color: #0070f3;
-}
 
-button:focus {
-  outline: 2px solid #0070f3;
-}
 
 /* Адаптивность */
 @media (max-width: 768px) {
