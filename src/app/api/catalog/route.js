@@ -8,17 +8,17 @@ export async function GET() {
 
 export async function POST(req) {
   const body = await req.json();
+
+  
   const newItem = await prisma.catalogItem.create({
     data: {
       title: body.title,
       description: body.description,
       price: body.price,
-      imageUrl: body.imageUrl,
-      
+      imageUrl: body.imageUrl, 
     },
-    
   });
-  console.log(body)
+
   return NextResponse.json(newItem);
 }
 

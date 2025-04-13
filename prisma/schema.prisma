@@ -27,7 +27,7 @@ model CatalogItem {
   title       String
   description String
   price       String
-  imageUrl    String
+  imageUrl    String  
 }
 
 model News {
