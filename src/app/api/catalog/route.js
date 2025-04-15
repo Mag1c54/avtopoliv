@@ -14,7 +14,7 @@ export async function POST(req) {
     data: {
       title: body.title,
       description: body.description,
-      price: body.price,
+      price: `${body.price}₽`,
       imageUrl: body.imageUrl, 
     },
   });

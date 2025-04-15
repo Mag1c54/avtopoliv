@@ -155,7 +155,7 @@ export default function CatalogAdminForm() {
             <div className={styles.cardContent}>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
-              <span>{item.price}₽</span>
+              <span>{item.price}</span>
               <button
                 className={styles.deleteButton}
                 onClick={() => setEditingItem(item)}

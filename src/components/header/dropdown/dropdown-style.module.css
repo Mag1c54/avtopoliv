@@ -48,35 +48,38 @@
 /* Адаптивность */
 @media (max-width: 768px) {
   .dropdownContent {
-    width: 100%; /* Ширина контента на мобильных устройствах */
+    position: static; /* ❗ Убираем absolute */
+    width: 100%;
+    flex-direction: column; /* ❗ Один под другим */
+    box-shadow: none;
     padding: 10px;
+    border-top: 1px solid #eee;
   }
 
   .item {
-    width: 100%; /* Карточки занимают всю ширину */
-    padding: 15px;
-    justify-content: center;
+    width: 100%;
+    justify-content: flex-start;
+    padding: 12px 10px;
   }
 
   .dropbtn {
     padding: 12px 15px;
-    font-size: 14px; /* Уменьшаем размер на мобильных */
+    font-size: 14px;
+    color: white; /* Цвет текста */
   }
 }
 
 @media (max-width: 480px) {
   .dropdownContent {
-    width: 100%; /* Ширина контента для маленьких экранов */
     padding: 5px;
   }
 
   .item {
-    width: 100%; /* Карточки занимают всю ширину на маленьких экранах */
-    padding: 10px;
+    padding: 10px 8px;
   }
 
   .dropbtn {
-    padding: 10px 15px;
-    font-size: 12px; /* Уменьшаем размер кнопки на очень маленьких экранах */
+    padding: 10px 10px;
+    font-size: 12px;
   }
 }
